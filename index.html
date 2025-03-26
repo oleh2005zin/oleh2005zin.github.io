@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>С Днем Рождения, Катя!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+    h1 {
+      font-size: 2.5em;
+      font-family: 'Comfortaa', cursive;
+      color: #ffffff;
+      text-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      text-align: center;
+      animation: fadeInUp 1s ease-out;
+    }
+    .btn {
+      padding: 12px 25px;
+      font-size: 1.2em;
+      margin-top: 25px;
+      border: none;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+    .btn:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.6);
+    }
+    #message {
+      opacity: 0;
+      font-size: 1.3em;
+      color: #ffffff;
+      margin-top: 30px;
+      text-align: center;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(30px);
+      max-width: 600px;
+    }
+    #message.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(white 1px, transparent 1px), radial-gradient(white 1px, transparent 1px);
+      background-size: 50px 50px, 70px 70px;
+      background-position: 0 0, 25px 25px;
+      opacity: 0.3;
+      animation: twinkle 2s infinite alternate;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+    @keyframes twinkle {
+      from { opacity: 0.1; }
+      to { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <h1>С Днём рождения, моя трудяга! 💖</h1>
+  <button class="btn" onclick="showMessage()">✨ Нажми сюда ✨</button>
+  <p id="message">
+    Пусть твои дни будут такими же яркими, как ты сама, пусть даже в них будет место для «ой, я забыла» — ведь даже в этом ты неповторимая. Будь всегда такой же взрывной, немного рассеянной, настоящей. А ещё — пусть каждый день приносит тебе что-то приятное. Ты этого заслуживаешь, моя трудяга 🌸✨💖
+  </p>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script>
+    function heartConfetti() {
+      const duration = 2000;
+      const end = Date.now() + duration;
+
+      (function frame() {
+        confetti({
+          particleCount: 3,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1, y: 0.5 },
+          shapes: ['circle'],
+          scalar: 1.5
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    }
+
+    function showMessage() {
+      const message = document.getElementById('message');
+      message.classList.toggle('visible');
+      heartConfetti();
+    }
+  </script>
+</body>
+</html>
